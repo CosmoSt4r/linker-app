@@ -4,28 +4,10 @@
 
 {% block content %}
 
-    <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-
-    <h1>Sign Up</h1>
-
-    <form method="POST">
-        {% csrf_token %}
-
-        <p>Username</p>
-        <input type="text" value="{{ username }}" name="username"/>
-
-        <p>Password</p>
-        <input type="password" name="password"/>
-
-        <p>Confirm password</p>
-        <input type="password" name="confirm-password"/>
-
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
 
 {% endblock %}

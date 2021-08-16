@@ -17,31 +17,29 @@ class SignupViewTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_username_error(self):
+    def test_field_length_error(self):
         data = {"username" : "user", 
-                "password" : "password",
-                "confirm-password" : "password"}
+                "password" : "pass",
+                "confirm_password" : "pass"}
         response = self.client.post('/account/signup/', data=data)
-        self.assertContains(response, "Username must be from")  # username length error
+        self.assertContains(response, "Ensure this value has at least 8 characters", 3)
 
     def test_user_create(self):
         data = {"username" : "testuser", 
                 "password" : "testpassword",
-                "confirm-password" : "testpassword"}
+                "confirm_password" : "testpassword"}
         response = self.client.post('/account/signup/', data=data)
         self.assertEqual(response.status_code, 200)
 
-    def test_username_exists(self):
         data = {"username" : "testuser", 
-                "password" : "testpassword",
-                "confirm-password" : "testpassword"}
+                "password" : "1234567890",
+                "confirm_password" : "1234567890"}
         response = self.client.post('/account/signup/', data=data)
         self.assertContains(response, "Username already exists")
 
     def test_password_error(self):
-        data = {"username" : "user", 
-                "password" : "pass",
-                "confirm-password" : "pass2"}
+        data = {"username" : "username", 
+                "password" : "password1",
+                "confirm_password" : "password2"}
         response = self.client.post('/account/signup/', data=data)
-        self.assertContains(response, "Password must contain")  # password length error
-        self.assertContains(response, "Passwords are")  # passwords matching error
+        self.assertContains(response, "Passwords are not matching")
