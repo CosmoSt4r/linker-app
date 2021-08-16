@@ -4,6 +4,13 @@ from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login
 
 
+def base_view(request):
+    if request.user.is_authenticated:
+        return redirect('account:home')
+    else:
+        return redirect('account:login')
+        
+
 def signup_view(request):
     if request.user.is_authenticated:
         return redirect('account:home')
