@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Log In{% endblock %}
 
 {% block content %}
 
@@ -10,6 +10,6 @@
     <input type="submit" value="Submit" />
 </form>
 
-<p><a href='{% url "account:login" %}'>Login</a></p>
+<p><a href='{% url "account:signup" %}'>Create account</a></p>
 
 {% endblock %}

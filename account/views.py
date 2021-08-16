@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
+from django.contrib.auth import authenticate, login
 
-def signup(request):
+
+def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('account:home')
+
     if request.method == 'POST':
 
         form = SignupForm(request.POST)
@@ -12,10 +17,30 @@ def signup(request):
             password = form.cleaned_data.get('password')
 
             User.objects.create_user(username=username, password=password)
-            
-            # return redirect('account:home')
-            return render(request, 'signup.html', {'form': form})
+
+            return redirect('account:home')
     else:
         form = SignupForm()
 
     return render(request, 'signup.html', {'form': form})
+
+
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('account:home')
+
+    if request.method == 'POST':
+
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('account:home')   
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})
