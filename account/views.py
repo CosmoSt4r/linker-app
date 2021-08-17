@@ -6,14 +6,14 @@ from django.contrib.auth import authenticate, login
 
 def base_view(request):
     if request.user.is_authenticated:
-        return redirect('account:home')
+        return redirect('account:home:main')
     else:
         return redirect('account:login')
         
 
 def signup_view(request):
     if request.user.is_authenticated:
-        return redirect('account:home')
+        return redirect('account:home:main')
 
     if request.method == 'POST':
 
@@ -25,7 +25,7 @@ def signup_view(request):
 
             User.objects.create_user(username=username, password=password)
 
-            return redirect('account:home')
+            return redirect('account:home:main')
     else:
         form = SignupForm()
 
@@ -34,7 +34,7 @@ def signup_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('account:home')
+        return redirect('account:home:main')
 
     if request.method == 'POST':
 
@@ -46,7 +46,7 @@ def login_view(request):
 
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('account:home')   
+            return redirect('account:home:main')   
     else:
         form = LoginForm()
 
