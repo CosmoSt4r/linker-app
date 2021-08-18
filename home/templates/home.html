@@ -6,7 +6,11 @@
 
 <h1>Homepage</h1>
 
-{{ link.title }}
-{{ link.user.username }}
+    <h2>{{ user.username }}</h2>
+
+    {% for link in links %}
+        <p>{{ link.title }}</p>
+        <p>{{ link.url }}</p>
+    {% endfor %}
 
 {% endblock %}
