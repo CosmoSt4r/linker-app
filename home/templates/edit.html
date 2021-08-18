@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit homepage{% endblock %}
+
+{% block content %}
+
+<h1>Homepage</h1>
+
+    <h2>{{ user.username }}</h2>
+
+    {% for link in links %}
+        <form action='{% url "account:home:edit-link" id=link.id %}'>
+            <p>{{ link.title }}</p>
+            <p>{{ link.url }}</p>
+            <input type="submit" value="Edit" />
+        </form>
+    {% endfor %}
+
+{% endblock %}

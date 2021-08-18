@@ -8,6 +8,10 @@
 
     <h2>{{ user.username }}</h2>
 
+    <form action='{% url "account:home:edit-main" %}'>
+        <input type="submit" value="Edit" />
+    </form>
+
     {% for link in links %}
         <p>{{ link.title }}</p>
         <p>{{ link.url }}</p>

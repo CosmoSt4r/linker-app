@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.http.response import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Link
 from .forms import LinkAddForm
 
@@ -32,6 +33,21 @@ def add_link_view(request):
     return render(request, "add_link.html", {"form": form})
 
 
+def edit_view(request):
+    if not request.user.is_authenticated:
+        return redirect("account:login")
+
+    links = Link.objects.filter(user=request.user)
+
+    return render(request, "edit.html", {"user": request.user, "links": links})
+
+
 def edit_link_view(request, id):
-    link = Link.objects.get(id=id)
+    if not request.user.is_authenticated:
+        return redirect("account:login")
+
+    link = get_object_or_404(Link, id=id)
+    if link.user != request.user:
+        return HttpResponse(404)
+
     return render(request, "home.html", {"link": link})
