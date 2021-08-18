@@ -25,7 +25,7 @@ def add_link_view(request):
 
             Link.objects.create(user=request.user, title=title, url=url)
 
-            return redirect("account:home:main")
+            return redirect("account:home:add-link")
     else:
         form = LinkAddForm()
 
