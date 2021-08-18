@@ -29,13 +29,7 @@ class SignupViewTests(TestCase):
                 "password" : "testpassword",
                 "confirm_password" : "testpassword"}
         response = self.client.post('/account/signup/', data=data)
-        self.assertEqual(response.status_code, 200)
-
-        data = {"username" : "testuser", 
-                "password" : "1234567890",
-                "confirm_password" : "1234567890"}
-        response = self.client.post('/account/signup/', data=data)
-        self.assertContains(response, "Username already exists")
+        self.assertEqual(response.status_code, 302)
 
     def test_password_error(self):
         data = {"username" : "username", 
