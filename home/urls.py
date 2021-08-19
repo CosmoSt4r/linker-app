@@ -7,5 +7,5 @@ urlpatterns = [
     path("add/", views.add_link_view, name="add-link"),
     path('edit/', views.edit_view, name='edit-main'),
     path("edit/<int:id>/", views.edit_link_view, name="edit-link"),
-    # path('delete/<int:id>/', views.delete_link_view, name='delete-link'),
+    path('delete/<int:id>/', views.delete_link_view, name='delete-link'),
 ]
