@@ -50,4 +50,17 @@ def edit_link_view(request, id):
     if link.user != request.user:
         return HttpResponse(404)
 
-    return render(request, "home.html", {"link": link})
+    if request.method == "POST":
+
+        form = LinkAddForm(request.POST)
+
+        if form.is_valid():
+            link.title = form.cleaned_data.get('title')
+            link.url = form.cleaned_data.get('url')
+            link.save()
+            return redirect("account:home:main")
+    else:
+        form = LinkAddForm()
+        form.initial = {'title' : link.title, 'url' : link.url}
+
+    return render(request, "edit_link.html", {"link" : link, "form" : form})

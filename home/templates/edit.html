@@ -9,11 +9,14 @@
     <h2>{{ user.username }}</h2>
 
     {% for link in links %}
+        <p>{{ link.title }}</p>
+        <p>{{ link.url }}</p>
+
         <form action='{% url "account:home:edit-link" id=link.id %}'>
-            <p>{{ link.title }}</p>
-            <p>{{ link.url }}</p>
             <input type="submit" value="Edit" />
         </form>
+
+
     {% endfor %}
 
 {% endblock %}
