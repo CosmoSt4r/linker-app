@@ -1,12 +1,12 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Link
 from .forms import LinkAddForm
 
 
+@login_required(login_url='account:login')
 def main_view(request):
-    if not request.user.is_authenticated:
-        return redirect("account:login")
 
     links = Link.objects.filter(user=request.user)
     return render(request, "home.html", {"user": request.user, "links": links})
