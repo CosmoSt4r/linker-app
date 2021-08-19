@@ -9,6 +9,7 @@
     <h2>{{ user.username }}</h2>
 
     {% for link in links %}
+    
         <p>{{ link.title }}</p>
         <p>{{ link.url }}</p>
 
@@ -19,7 +20,6 @@
         <form action='{% url "account:home:delete-link" id=link.id %}'>
             <input type="submit" value="Delete" />
         </form>
-
 
     {% endfor %}
 

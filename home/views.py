@@ -69,4 +69,3 @@ def delete_link_view(request, id):
         return redirect("account:home:main")
 
     return render(request, "delete_link.html", {"link" : link})
-

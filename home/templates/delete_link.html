@@ -6,8 +6,8 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ link.title }}
-    {{ link.url }}
+    <p>{{ link.title }}</p>
+    <p>{{ link.url }}</p>
     <input type="submit" value="Delete" />
 </form>
 
