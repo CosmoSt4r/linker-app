@@ -68,6 +68,6 @@ def delete_link_view(request, id):
 
     if request.method == "POST":
         Link.objects.filter(id=link.id).delete()
-        return redirect("account:home:main")
+        return redirect("account:home:edit-main")
 
     return render(request, "delete_link.html", {"link" : link})
