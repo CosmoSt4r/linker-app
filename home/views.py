@@ -44,13 +44,15 @@ def edit_link_view(request, id):
 
     if request.method == "POST":
 
-        form = LinkAddForm(request.POST)
+        if request.POST.get('submit'):
+            form = LinkAddForm(request.POST)
 
-        if form.is_valid():
-            link.title = form.cleaned_data.get('title')
-            link.url = form.cleaned_data.get('url')
-            link.save()
-            return redirect("account:home:main")
+            if form.is_valid():
+                link.title = form.cleaned_data.get('title')
+                link.url = form.cleaned_data.get('url')
+                link.save()
+
+        return redirect('account:home:edit-main')
     else:
         form = LinkAddForm()
         form.initial = {'title' : link.title, 'url' : link.url}

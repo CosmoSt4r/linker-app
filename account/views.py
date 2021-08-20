@@ -25,6 +25,9 @@ def signup_view(request):
 
             User.objects.create_user(username=username, password=password)
 
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
             return redirect("account:home:main")
     else:
         form = SignupForm()

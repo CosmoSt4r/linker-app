@@ -13,14 +13,18 @@
         <p>{{ link.title }}</p>
         <p>{{ link.url }}</p>
 
-        <form action='{% url "account:home:edit-link" id=link.id %}'>
+        <form action='{% url "account:home:edit-link" link.id %}'>
             <input type="submit" value="Edit" />
         </form>
 
-        <form action='{% url "account:home:delete-link" id=link.id %}'>
+        <form action='{% url "account:home:delete-link" link.id %}'>
             <input type="submit" value="Delete" />
         </form>
 
     {% endfor %}
+
+    <form action='{% url "account:home:add-link" %}'>
+        <input type="submit" value="Add link" />
+    </form>
 
 {% endblock %}
