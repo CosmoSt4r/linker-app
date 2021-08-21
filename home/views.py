@@ -7,7 +7,6 @@ from .forms import LinkAddForm
 
 @login_required(login_url="account:login")
 def main_view(request):
-    print(request.META['HTTP_HOST'])
     links = Link.objects.filter(user=request.user)
     return render(request, "home.html", {"links": links})
 
