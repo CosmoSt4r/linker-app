@@ -13,19 +13,12 @@
         <p>{{ link.title }}</p>
         <p>{{ link.url }}</p>
 
-        <form action='{% url "account:home:edit-link" link.id %}'>
-            <input type="submit" value="Edit" />
-        </form>
-
-        <form action='{% url "account:home:delete-link" link.id %}'>
-            <input type="submit" value="Delete" />
-        </form>
+        <button onclick="document.location=`{% url 'account:home:edit-link' link.id %}`">Edit</button>
+        <button onclick="document.location=`{% url 'account:home:delete-link' link.id %}`">Delete</button>
 
     {% endfor %}
-
-    <form action='{% url "account:home:add-link" %}'>
-        <input type="submit" value="Add link" />
-    </form>
+    <br>
+    <button onclick="document.location=`{% url 'account:home:add-link' %}`">Add link</button>
 
     <p><a href='{% url "account:home:main" %}'>Home</a></p>
 

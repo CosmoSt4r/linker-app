@@ -8,17 +8,13 @@
 
     <h2>{{ user.username }}</h2>
 
-    <form action='{% url "account:home:edit-main" %}'>
-        <input type="submit" value="Edit" />
-    </form>
-
+    <button onclick="document.location=`{% url 'account:home:edit-main' %}`">Edit</button>
+    <br>
     {% for link in links %}
         <p>{{ link.title }}</p>
         <p>{{ link.url }}</p>
     {% endfor %}
-
-    <form action='{% url "account:logout" %}'>
-        <input type="submit" value="Log out" />
-    </form>
+    <br>
+    <button onclick="document.location=`{% url 'account:logout' %}`">Log Out</button>
 
 {% endblock %}

@@ -8,11 +8,8 @@
     {% csrf_token %}
     <p>{{ link.title }}</p>
     <p>{{ link.url }}</p>
-    <input type="submit" value="Delete" />
-</form>
-
-<form action='{% url "account:home:main" %}'>
-    <input type="submit" value="Back" />
+    <input type="submit" name='cancel' value="Cancel" />
+    <input type="submit" name='delete' value="Delete" />
 </form>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse
+from django.http.response import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Link
@@ -40,7 +40,7 @@ def edit_view(request):
 def edit_link_view(request, id):
     link = get_object_or_404(Link, id=id)
     if link.user != request.user:
-        return HttpResponse(404)
+        raise Http404("Link not found")
 
     if request.method == "POST":
 
@@ -64,10 +64,11 @@ def edit_link_view(request, id):
 def delete_link_view(request, id):
     link = get_object_or_404(Link, id=id)
     if link.user != request.user:
-        return HttpResponse(404)
+        raise Http404("Link not found")
 
     if request.method == "POST":
-        Link.objects.filter(id=link.id).delete()
+        if request.POST.get('delete'):
+            Link.objects.filter(id=link.id).delete()
         return redirect("account:home:edit-main")
 
     return render(request, "delete_link.html", {"link": link})
