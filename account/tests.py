@@ -72,3 +72,19 @@ class LoginViewTests(TestCase):
         data = {"username": "testuser", "password": "testpassword"}
         response = self.client.post("/account/login/", data=data)
         self.assertContains(response, "Username or password is invalid")
+
+
+class LogoutViewTest(TestCase):
+    def test_logout(self):
+        data = {
+            "username": "testuser",
+            "password": "testpassword",
+            "confirm_password": "testpassword",
+        }
+
+        self.assertRedirects(
+            self.client.post("/account/signup/", data=data), "/account/home/", 302
+        )
+        self.assertRedirects(
+            self.client.get("/account/logout/"), "/account/login/", 302
+        )
