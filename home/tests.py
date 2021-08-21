@@ -73,7 +73,7 @@ class MainViewTest(TestCase):
             self.client.post("/account/home/add/", data=data), "/account/home/add/", 302
         )
         self.assertRedirects(
-            self.client.post("/account/home/delete/1/", data={"submit": True}),
+            self.client.post("/account/home/delete/1/", data={"delete": True}),
             "/account/home/edit/",
             302,
         )
