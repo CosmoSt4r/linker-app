@@ -8,6 +8,8 @@
 
     <h2>{{ user.username }}</h2>
 
+    <p>Your link: {{ request.META.HTTP_HOST }}/{{ request.user.username }}</p>
+
     <button onclick="document.location=`{% url 'account:home:edit-main' %}`">Edit</button>
     <br>
     {% for link in links %}
