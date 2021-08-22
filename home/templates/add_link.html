@@ -4,12 +4,38 @@
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+<div class="container d-flex justify-content-md-center align-items-center vh-100">
+    <aside class="col-sm-6">
+        <div class="card">
+            <article class="card-body">
+                <h4 class="card-title mb-4 mt-1">Add link</h4>
+                <hr>
+                <form method='POST'>
+                {% csrf_token %}
 
-<p><a href='{% url "account:home:main" %}'>Home</a></p>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text">Title</span>
+                        {{ form.title }}
+                    </div>
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text">URL</span>
+                        {{ form.url }}
+                    </div>
+                </div> <!-- form-group// -->       
+
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary btn-block" value='Submit' />
+                </div>                               
+
+                <p class="text-center"><a href="{% url 'account:home:main' %}" class="link-primary">Home</a></p>                                                         
+            </form>
+            </article>
+            </div> <!-- card.// -->
+    </aside>
+</div>
 
 {% endblock %}
