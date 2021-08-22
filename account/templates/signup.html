@@ -4,12 +4,55 @@
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+<div class="container d-flex justify-content-md-center align-items-center vh-100">
+    <aside class="col-sm-6">
+    <div class="card">
+        <article class="card-body">
+            <h4 class="card-title text-center mb-4 mt-1">Sign Up</h4>
+            <hr>
+            {{ form.non_field_errors }}
+            <form method='POST'>
+            {% csrf_token %}
 
-<p><a href='{% url "account:login" %}'>Login</a></p>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+                {{ form.username }}
+            </div> <!-- input-group.// -->
+            {{ form.username.errors }}
+            </div> <!-- form-group// -->
+
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                 </div>
+                {{ form.password }}
+            </div> <!-- input-group.// -->
+            {{ form.password.errors }}
+            </div> <!-- form-group// -->
+
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                {{ form.confirm_password }}
+            </div> <!-- input-group.// -->
+            {{ form.confirm_password.errors }}
+            </div> <!-- form-group// -->
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Signup </button>
+            </div> <!-- form-group// -->
+
+            <p class="text-center"><a href="{% url 'account:login' %}" class="btn">Already have an account? Log in</a></p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+    </aside>
+</div>
 
 {% endblock %}

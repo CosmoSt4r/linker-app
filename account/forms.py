@@ -6,8 +6,11 @@ from django.contrib.auth import authenticate
 
 class SignupForm(forms.Form):
     username = forms.CharField(min_length=8, max_length=32)
+    username.widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Username'})
     password = forms.CharField(widget=forms.PasswordInput, min_length=8)
+    password.widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Password'})
     confirm_password = forms.CharField(widget=forms.PasswordInput, min_length=8)
+    confirm_password.widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Cofirm Password'})
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
