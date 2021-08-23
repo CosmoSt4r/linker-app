@@ -1,25 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base_main.html' %}
 
 {% block title %}Edit homepage{% endblock %}
 
-{% block content %}
-
-<h1>Homepage</h1>
-
-    <h2>{{ request.user.username }}</h2>
-
-    {% for link in links %}
-    
-        <p>{{ link.title }}</p>
-        <p>{{ link.url }}</p>
-
-        <button onclick="document.location=`{% url 'account:home:edit-link' link.id %}`">Edit</button>
-        <button onclick="document.location=`{% url 'account:home:delete-link' link.id %}`">Delete</button>
-
-    {% endfor %}
-    <br>
-    <button onclick="document.location=`{% url 'account:home:add-link' %}`">Add link</button>
-
-    <p><a href='{% url "account:home:main" %}'>Home</a></p>
-
+{% block side_buttons %}
+    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:add-link' %}`">Add link</button>
+    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:main' %}`">Home</button>
 {% endblock %}
+
+{% block user_personal_link_buttons %}
+{% endblock %}
+
+{% block user_links_buttons %}
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:edit-link' link.id %}`">Edit</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:delete-link' link.id %}`">Delete</button>
+{% endblock %}
+

@@ -8,7 +8,7 @@ from .forms import LinkAddForm
 @login_required(login_url="account:login")
 def main_view(request):
     links = Link.objects.filter(user=request.user)
-    return render(request, "home.html", {"links": links})
+    return render(request, "home.html", {"user": request.user, "links": links})
 
 
 @login_required(login_url="account:login")
@@ -33,7 +33,7 @@ def add_link_view(request):
 @login_required(login_url="account:login")
 def edit_view(request):
     links = Link.objects.filter(user=request.user)
-    return render(request, "edit.html", {"links": links})
+    return render(request, "edit.html", {"user": request.user, "links": links})
 
 
 @login_required(login_url="account:login")

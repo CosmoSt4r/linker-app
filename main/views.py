@@ -28,5 +28,5 @@ def show_user(request, username):
 
     links = Link.objects.filter(user=user)
     return render(
-        request, "user.html", context={"username": user.username, "links": links}
+        request, "user.html", context={"user": user, "links": links}
     )

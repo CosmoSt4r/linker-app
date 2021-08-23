@@ -1,14 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base_main.html' %}
 
-{% block title %}{{ username }}{% endblock %}
+{% block title %}{{ user.username }}{% endblock %}
 
-{% block content %}
-
-    <h1>{{ username }}</h1>
-
-    {% for link in links %}
-        <p>{{ link.title }}</p>
-        <p>{{ link.url }}</p>
-    {% endfor %}
-
+{% block side_buttons %}
+    {% if request.user == user %}
+        <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:edit-main' %}`">Edit</button>
+    {% endif %}
 {% endblock %}
+
+{% block user_personal_link_buttons %}
+    <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ request.META.HTTP_HOST }}/{{ user.username }}')">Copy</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main-page:show-user' user.username %}`">Go</button>
+{% endblock %}
+
+{% block user_links_buttons %}
+    <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ link.url }}')">Copy</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`//{{ link.url }}`">Go</button>
+{% endblock %}
+
