@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-md-center align-items-center mt-5">
+    <aside class="col-sm-6">
+    <div class="card border-primary">
+        <article class="card-body">
+            <h4 class="card-title text-center mb-4 mt-1">{% block form_name %}{% endblock %}</h4>
+            <hr>
+            {{ form.non_field_errors }}
+            <form method='POST'>
+            {% csrf_token %}
+
+            {% block form_content %}
+            {% endblock %}
+
+            </form>
+        </article>
+    </div> <!-- card.// -->
+    </aside>
+</div>
+
+{% endblock %}

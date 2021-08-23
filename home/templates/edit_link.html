@@ -1,45 +1,30 @@
-{% extends 'base.html' %}
+{% extends "base_form.html" %}
 
-{% block title %}Edit link{% endblock %}
+{% block title %}Edit Link{% endblock %}
 
-{% block content %}
+{% block form_name %}Edit link{% endblock %}
 
-<div class="container d-flex justify-content-md-center align-items-center mt-5">
-    <aside class="col-sm-6">
-        <div class="card">
-            <article class="card-body">
-                <h4 class="card-title mb-4 mt-1">Edit link</h4>
-                <hr>
-                <form method='POST'>
-                {% csrf_token %}
+{% block form_content %}
+<div class="form-group mb-4 mt-4">
+    <div class="input-group">
+        <span class="input-group-text">Title</span>
+        {{ form.title }}
+    </div>
+</div> <!-- form-group// -->
 
-                <div class="form-group mb-4 mt-4">
-                    <div class="input-group">
-                        <span class="input-group-text">Title</span>
-                        {{ form.title }}
-                    </div>
-                </div> <!-- form-group// -->
+<div class="form-group mb-4 mt-4">
+    <div class="input-group">
+        <span class="input-group-text">URL</span>
+        {{ form.url }}
+    </div>
+</div> <!-- form-group// -->       
 
-                <div class="form-group mb-4 mt-4">
-                    <div class="input-group">
-                        <span class="input-group-text">URL</span>
-                        {{ form.url }}
-                    </div>
-                </div> <!-- form-group// -->       
-
-                <div class="row mb-4 mt-4">
-                    <div class="col-md-6">
-                        <input type="submit" name="cancel" class="btn btn-primary btn-block" value='Cancel' />
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <input type="submit" name="submit" class="btn btn-primary btn-block" value='Submit' />
-                    </div>                                    
-                </div> <!-- .row// --> 
-                                                                                 
-            </form>
-            </article>
-            </div> <!-- card.// -->
-    </aside>
-</div>
-
+<div class="row mb-4 mt-4">
+    <div class="col-md-6">
+        <input type="submit" name="cancel" class="btn btn-primary btn-block" value='Cancel' />
+    </div>
+    <div class="col-md-6 text-right">
+        <input type="submit" name="submit" class="btn btn-primary btn-block" value='Submit' />
+    </div>                                    
+</div> <!-- .row// --> 
 {% endblock %}
