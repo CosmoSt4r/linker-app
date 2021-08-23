@@ -3,13 +3,22 @@
 {% block title %}Linker{% endblock %}
 
 {% block content %}
-
-    <h1>Linker</h1>
-        
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Search" />
-    </form>
+    <div class="container d-flex justify-content-md-center align-items-center mt-5">
+        <aside class="col-sm-6">
+            <div class="card border-primary">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Search user</h4>
+                    <hr>
+                    <form method='POST'>
+                    {% csrf_token %}
+                    {{ form.username.errors }}
+                    <div class="input-group mb-3">
+                        {{ form.username }}
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                    </form>
+                </article>
+            </div> <!-- card.// -->
+        </aside>
 
 {% endblock %}
