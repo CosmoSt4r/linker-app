@@ -6,7 +6,7 @@
 
 <div class="container d-flex justify-content-md-center align-items-center vh-100">
     <aside class="col-sm-6">
-    <div class="card">
+    <div class="card border-primary">
         <article class="card-body">
             <h4 class="card-title text-center mb-4 mt-1">Sign Up</h4>
             <hr>
@@ -14,41 +14,41 @@
             <form method='POST'>
             {% csrf_token %}
 
-            <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                 </div>
-                {{ form.username }}
-            </div> <!-- input-group.// -->
+            <div class="form-group mb-4 mt-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    {{ form.username }}
+                </div> <!-- input-group.// -->
             {{ form.username.errors }}
             </div> <!-- form-group// -->
 
-            <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                 </div>
-                {{ form.password }}
-            </div> <!-- input-group.// -->
+            <div class="form-group mb-4 mt-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    {{ form.password }}
+                </div> <!-- input-group.// -->
             {{ form.password.errors }}
             </div> <!-- form-group// -->
 
-            <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                </div>
-                {{ form.confirm_password }}
-            </div> <!-- input-group.// -->
+            <div class="form-group mb-4 mt-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    {{ form.confirm_password }}
+                </div> <!-- input-group.// -->
             {{ form.confirm_password.errors }}
             </div> <!-- form-group// -->
             
-            <div class="form-group">
+            <div class="form-group mb-4 mt-4">
                 <button type="submit" class="btn btn-primary btn-block"> Signup </button>
             </div> <!-- form-group// -->
 
-            <p class="text-center"><a href="{% url 'account:login' %}" class="link-primary">Already have an account? Log in</a></p>
+            <p class="text-center mb-4 mt-1"><a href="{% url 'account:login' %}" class="link-primary">Already have an account? Log in</a></p>
             </form>
         </article>
     </div> <!-- card.// -->
