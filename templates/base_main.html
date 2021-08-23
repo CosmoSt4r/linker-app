@@ -42,7 +42,10 @@
             {% for link in links %}
             <tr>
                 <td>{{ link.title }}</td>
-                <td><a class="link-primary" href="//{{ link.url }}">{{ link.url }}</a></td>
+                <td>
+                    <img src="https://www.google.com/s2/favicons?domain={{ link.url }}" height="14px" alt="favicon"/>
+                    <a class="link-primary" href="//{{ link.url }}">{{ link.url }}</a>
+                </td>
                 <td>
                     {% block user_links_buttons %}
                     {% endblock %}
