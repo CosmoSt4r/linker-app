@@ -1,1 +1,7 @@
-<h1>404</h1>
+{% extends 'base_error.html' %}
+
+{% block title %}404 Error{% endblock %}
+
+{% block error_message %}
+    <h1>Oops! Page not found :(</h1>
+{% endblock %}
