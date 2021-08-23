@@ -5,12 +5,6 @@
 {% block content %}
 
     <h1>Linker</h1>
-    {% if request.user.is_authenticated %}
-        <button onclick="document.location=`{% url 'account:home:main' %}`">Home</button>
-    {% else %}
-        <button onclick="document.location=`{% url 'account:login' %}`">Log In</button>
-        <button onclick="document.location=`{% url 'account:signup' %}`">Sign Up</button>
-    {% endif %}
         
     <form method="POST">
         {% csrf_token %}
