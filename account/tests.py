@@ -49,6 +49,7 @@ class SignupViewTests(TestCase):
 
 
 class LoginViewTests(TestCase):
+
     def test_get(self):
         response = self.client.get("/account/login/")
         self.assertEqual(response.status_code, 200)
@@ -68,10 +69,26 @@ class LoginViewTests(TestCase):
         response = self.client.post("/account/login/", data=data)
         self.assertContains(response, "Ensure this value has at least 8 characters", 2)
 
-    def test_user_login(self):
+    def test_user_login_error(self):
         data = {"username": "testuser", "password": "testpassword"}
         response = self.client.post("/account/login/", data=data)
         self.assertContains(response, "Username or password is invalid")
+
+    def test_user_login(self):
+        data = {
+            "username": "username",
+            "password": "password",
+            "confirm_password": "password",
+        }
+        self.assertRedirects(
+            self.client.post("/account/signup/", data=data), "/account/home/", 302
+        )
+        self.assertRedirects(
+            self.client.get("/account/logout/"), "/account/login/", 302
+        )
+        self.assertRedirects(
+            self.client.post("/account/login/", data=data), "/account/home/", 302
+        )
 
 
 class LogoutViewTest(TestCase):

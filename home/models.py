@@ -9,4 +9,4 @@ class Link(models.Model):
     url = models.TextField()
 
     def get_absolute_url(self):
-        return reverse("account:home:edit", kwargs={"id": self.id})
+        return reverse("account:home:edit-link", kwargs={"id": self.id})
