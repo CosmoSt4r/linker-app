@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Link
+from .models import QRCode
 
 
 class BaseViewTest(TestCase):
@@ -42,12 +42,12 @@ class MainViewTest(TestCase):
             self.client.post("/account/signup/", data=self.data), "/account/home/", 302
         )
         self.assertEqual(self.client.get("/account/home/add/").status_code, 200)
-        data = {"title": "title", "url": "url"}
+        data = {"title": "title", "text": "text"}
         self.assertRedirects(
             self.client.post("/account/home/add/", data=data), "/account/home/add/", 302
         )
-        self.assertTrue(Link.objects.filter(title='title').exists())
-        self.assertEquals(Link.objects.filter(title='title').get().get_absolute_url(),
+        self.assertTrue(QRCode.objects.filter(title='title').exists())
+        self.assertEquals(QRCode.objects.filter(title='title').get().get_absolute_url(),
         '/account/home/edit/1/')
 
     def test_edit(self):
@@ -55,26 +55,26 @@ class MainViewTest(TestCase):
             self.client.post("/account/signup/", data=self.data), "/account/home/", 302
         )
         self.assertEqual(self.client.get("/account/edit/1/").status_code, 404)
-        data = {"title": "title", "url": "url"}
+        data = {"title": "title", "text": "text"}
         self.assertRedirects(
             self.client.post("/account/home/add/", data=data), "/account/home/add/", 302
         )
         self.assertEqual(self.client.get("/account/home/edit/").status_code, 200)
         self.assertEqual(self.client.get("/account/home/edit/1/").status_code, 200)
-        data = {"title": "title2", "url": "url2", "submit": True}
+        data = {"title": "title2", "text": "text2", "submit": True}
         self.assertRedirects(
             self.client.post("/account/home/edit/1/", data=data),
             "/account/home/edit/",
             302,
         )
-        self.assertContains(self.client.get("/account/home/"), "url2")
+        self.assertContains(self.client.get("/account/home/"), "text2")
 
     def test_delete(self):
         self.assertRedirects(
             self.client.post("/account/signup/", data=self.data), "/account/home/", 302
         )
         self.assertEqual(self.client.get("/account/delete/1/").status_code, 404)
-        data = {"title": "title", "url": "url"}
+        data = {"title": "title", "text": "text"}
         self.assertRedirects(
             self.client.post("/account/home/add/", data=data), "/account/home/add/", 302
         )
@@ -83,4 +83,4 @@ class MainViewTest(TestCase):
             "/account/home/edit/",
             302,
         )
-        self.assertNotContains(self.client.get("/account/home/"), "url")
+        self.assertNotContains(self.client.get("/account/home/"), "text")

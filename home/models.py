@@ -12,4 +12,4 @@ class QRCode(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse("account:home:edit-link", kwargs={"id": self.id})
+        return reverse("account:home:edit-code", kwargs={"id": self.id})
