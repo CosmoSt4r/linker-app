@@ -32,7 +32,7 @@
         <tbody>
             <tr>
                 <td>My link</td>
-                <td><a href="{% url 'main-page:show-user' user.username %}" id="myLink" target="_blank" class="link-primary">{{ request.META.HTTP_HOST }}/{{ user.username }}</a></td>
+                <td><a href="{% url 'main:user' user.username %}" id="myLink" target="_blank" class="link-primary">{{ request.META.HTTP_HOST }}/{{ user.username }}</a></td>
                 <td>
                     {% block user_personal_code_buttons %}
                     {% endblock %}

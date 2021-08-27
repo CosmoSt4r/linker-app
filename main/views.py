@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import SearchUserForm
 from django.contrib.auth.models import User
-from home.models import QRCode
+from qrcode.models import QRCode
 
 
 def main_view(request):
@@ -13,7 +13,7 @@ def main_view(request):
 
         if form.is_valid():
             username = form.cleaned_data.get("username")
-            return redirect(reverse("main-page:show-user", args=[username]))
+            return redirect(reverse("main:user", args=[username]))
     else:
         form = SearchUserForm()
 

@@ -4,13 +4,13 @@
 
 {% block side_buttons %}
     {% if request.user == user %}
-        <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:edit-main' %}`">Edit</button>
+        <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:edit' %}`">Edit</button>
     {% endif %}
 {% endblock %}
 
 {% block user_personal_code_buttons %}
     <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ request.META.HTTP_HOST }}/{{ user.username }}')">Copy</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main-page:show-user' user.username %}`">Show</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main:user' user.username %}`">Show</button>
 {% endblock %}
 
 {% block user_codes_buttons %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "account",
     "home",
     "main",
+    "qrcode",
 ]
 
 MIDDLEWARE = [

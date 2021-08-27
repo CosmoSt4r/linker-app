@@ -3,7 +3,7 @@
 {% block title %}Edit homepage{% endblock %}
 
 {% block side_buttons %}
-    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:add-code' %}`">Add QR Code</button>
+    <button class="btn btn-primary" onclick="document.location=`{% url 'qrcode:add' %}`">Add QR Code</button>
     <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:main' %}`">Home</button>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block user_codes_buttons %}
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:edit-code' code.id %}`">Edit</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:delete-code' code.id %}`">Delete</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:edit' code.id %}`">Edit</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:delete' code.id %}`">Delete</button>
 {% endblock %}
 
