@@ -10,11 +10,11 @@
 
 {% block user_personal_code_buttons %}
     <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ request.META.HTTP_HOST }}/{{ user.username }}')">Copy</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main:user' user.username %}`">Show</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:user' user.username %}`">Show</button>
 {% endblock %}
 
 {% block user_codes_buttons %}
     <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ code.text }}')">Copy</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`//{{ code.text }}`">Show</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:show' code.id %}`">Show</button>
 {% endblock %}
 

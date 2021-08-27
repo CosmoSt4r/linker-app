@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <h1>{{ user.username }}</h1>
+    <img src="{{ code_source }}" class="rounded mb-4" alt="{{ user.username }}">
+
+    <button class="btn btn-outline-primary mr-3" onclick="">Download</button>
+
+    <p><strong>User link:</strong> {{ request.META.HTTP_HOST }}/{{ user.username }}</p>
+    <p><strong>QR Codes created:</strong> {{ user.links_count }}</p>
+</div>
+
+{% endblock %}
