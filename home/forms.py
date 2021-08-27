@@ -1,17 +1,11 @@
 from django import forms
+from .models import QRCode
 
 
-class LinkAddForm(forms.Form):
-    title = forms.CharField(max_length=64)
-    url = forms.CharField()
+class QRCodeAddForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Your title'}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'cols' : 80, 'rows' : 10, 'class' : 'form-control', 'placeholder' : 'Your text or URL'}))
 
-    title.widget.attrs.update({'class' : 'form-control'})
-    url.widget.attrs.update({'class' : 'form-control'})
+class LinkAddForm:
+    ...
 
-    def clean_title(self):
-        title = self.cleaned_data.get("title")
-        return title.strip()
-
-    def clean_url(self):
-        url = self.cleaned_data.get("url")
-        return url.strip()

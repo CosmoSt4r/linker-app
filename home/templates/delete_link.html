@@ -1,21 +1,20 @@
 {% extends "base_form.html" %}
 
-{% block title %}Delete Link{% endblock %}
+{% block title %}Delete QR Code{% endblock %}
 
-{% block form_name %}Delete link{% endblock %}
+{% block form_name %}Delete QR Code{% endblock %}
 
 {% block form_content %}
 <div class="form-group mb-4 mt-4">
     <div class="input-group">
         <span class="input-group-text">Title</span>
-        <input class="form-control" type="text" value="{{ link.title }}" disabled readonly>
+        <input class="form-control" type="text" value="{{ code.title }}" disabled readonly>
     </div>
 </div> <!-- form-group// -->
 
 <div class="form-group mb-4 mt-4">
     <div class="input-group">
-        <span class="input-group-text">URL</span>
-        <input class="form-control" type="text" value="{{ link.url }}" disabled readonly>
+        <input class="form-control" type="text" value="{{ code.text }}" disabled readonly>
     </div>
 </div> <!-- form-group// -->       
 

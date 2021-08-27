@@ -23,8 +23,8 @@
 
         <thead class="table-primary">
           <tr>
-              <th>Link</th>
-              <th>URL</th>
+              <th>Title</th>
+              <th>Text</th>
               <th>Action</th>
           </tr>
         </thead>
@@ -34,20 +34,17 @@
                 <td>My link</td>
                 <td><a href="{% url 'main-page:show-user' user.username %}" id="myLink" target="_blank" class="link-primary">{{ request.META.HTTP_HOST }}/{{ user.username }}</a></td>
                 <td>
-                    {% block user_personal_link_buttons %}
+                    {% block user_personal_code_buttons %}
                     {% endblock %}
                 </td>
             </tr>
 
-            {% for link in links %}
+            {% for code in codes %}
             <tr>
-                <td>{{ link.title }}</td>
+                <td>{{ code.title }}</td>
+                <td>{{ code.text }}</td>
                 <td>
-                    <img src="https://www.google.com/s2/favicons?domain={{ link.url }}" height="14px" alt="favicon"/>
-                    <a class="link-primary" href="//{{ link.url }}">{{ link.url }}</a>
-                </td>
-                <td>
-                    {% block user_links_buttons %}
+                    {% block user_codes_buttons %}
                     {% endblock %}
                 </td>
             </tr>

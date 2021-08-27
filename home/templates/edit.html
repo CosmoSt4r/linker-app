@@ -3,15 +3,15 @@
 {% block title %}Edit homepage{% endblock %}
 
 {% block side_buttons %}
-    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:add-link' %}`">Add link</button>
+    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:add-link' %}`">Add QR Code</button>
     <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:main' %}`">Home</button>
 {% endblock %}
 
-{% block user_personal_link_buttons %}
+{% block user_personal_code_buttons %}
 {% endblock %}
 
-{% block user_links_buttons %}
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:edit-link' link.id %}`">Edit</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:delete-link' link.id %}`">Delete</button>
+{% block user_codes_buttons %}
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:edit-link' code.id %}`">Edit</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'account:home:delete-link' code.id %}`">Delete</button>
 {% endblock %}
 
