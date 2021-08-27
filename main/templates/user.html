@@ -8,13 +8,13 @@
     {% endif %}
 {% endblock %}
 
-{% block user_personal_link_buttons %}
+{% block user_personal_code_buttons %}
     <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ request.META.HTTP_HOST }}/{{ user.username }}')">Copy</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main-page:show-user' user.username %}`">Go</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'main-page:show-user' user.username %}`">Show</button>
 {% endblock %}
 
-{% block user_links_buttons %}
-    <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ link.url }}')">Copy</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`//{{ link.url }}`">Go</button>
+{% block user_codes_buttons %}
+    <button class="btn btn-outline-primary" onclick="navigator.clipboard.writeText('{{ code.text }}')">Copy</button>
+    <button class="btn btn-outline-primary" onclick="document.location=`//{{ code.text }}`">Show</button>
 {% endblock %}
 

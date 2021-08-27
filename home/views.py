@@ -12,7 +12,7 @@ def main_view(request):
 
 
 @login_required(login_url="account:login")
-def add_link_view(request):
+def add_code_view(request):
     if request.method == "POST":
 
         form = QRCodeAddForm(request.POST)
@@ -23,11 +23,11 @@ def add_link_view(request):
 
             QRCode.objects.create(user=request.user, title=title, text=text)
             
-            return redirect("account:home:add-link")
+            return redirect("account:home:add-code")
     else:
         form = QRCodeAddForm()
 
-    return render(request, "add_link.html", {"form": form})
+    return render(request, "add_code.html", {"form": form})
 
 
 @login_required(login_url="account:login")
@@ -37,10 +37,10 @@ def edit_view(request):
 
 
 @login_required(login_url="account:login")
-def edit_link_view(request, id):
+def edit_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
     if code.user != request.user:
-        raise Http404("Link not found")
+        raise Http404("code not found")
 
     if request.method == "POST":
 
@@ -57,11 +57,11 @@ def edit_link_view(request, id):
         form = QRCodeAddForm()
         form.initial = {"title": code.title, "text": code.text}
 
-    return render(request, "edit_link.html", {"code": code, "form": form})
+    return render(request, "edit_code.html", {"code": code, "form": form})
 
 
 @login_required(login_url="account:login")
-def delete_link_view(request, id):
+def delete_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
     if code.user != request.user:
         raise Http404("QRCode not found")
@@ -71,4 +71,4 @@ def delete_link_view(request, id):
             QRCode.objects.filter(id=code.id).delete()
         return redirect("account:home:edit-main")
 
-    return render(request, "delete_link.html", {"code": code})
+    return render(request, "delete_code.html", {"code": code})
