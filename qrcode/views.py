@@ -26,7 +26,7 @@ def edit_code_view(request, id):
         form = QRCodeAddForm()
         form.initial = {"title": code.title, "text": code.text}
 
-    return render(request, "edit.html", {"code": code, "form": form})
+    return render(request, "edit_code.html", {"code": code, "form": form})
 
 
 @login_required(login_url="account:login")
@@ -60,3 +60,9 @@ def add_code_view(request):
         form = QRCodeAddForm()
 
     return render(request, "add.html", {"form": form})
+
+
+def show_code_view(request, id):
+    code = get_object_or_404(QRCode, id=id)
+    source = f'https://image-charts.com/chart?chs=200x200&cht=qr&chl={code.text}&choe=UTF-8'
+    return render(request, "show.html", {"code": code, "code_source" : source})
