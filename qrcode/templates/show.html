@@ -11,7 +11,13 @@
 
     <button class="btn btn-outline-primary mr-3" onclick="">Download</button>
 
-    <p><strong>Content:</strong> {{ code.text }}</p>
+    <p><strong>Content:</strong> 
+        {% if code.is_link %}
+            <a href="//{{ code.text }}" class="link-primary">{{ code.text }}</a>
+        {% else %}
+            {{ code.text }}
+        {% endif %}
+    </p>
 </div>
 
 {% endblock %}

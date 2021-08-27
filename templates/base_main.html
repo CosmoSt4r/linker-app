@@ -33,7 +33,11 @@
             {% for code in codes %}
             <tr>
                 <td>{{ code.title }}</td>
-                <td>{{ code.text }}</td>
+                {% if code.is_link %}
+                    <td><a href="//{{ code.text }}" class="link-primary">{{ code.text }}</a></td>
+                {% else %}
+                    <td>{{ code.text }}</td>
+                {% endif %}
                 <td>
                     {% block user_codes_buttons %}
                     {% endblock %}

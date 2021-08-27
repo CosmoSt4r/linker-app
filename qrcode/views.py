@@ -19,6 +19,7 @@ def edit_code_view(request, id):
             if form.is_valid():
                 code.title = form.cleaned_data.get("title")
                 code.text = form.cleaned_data.get("text")
+                code.is_link = form.cleaned_data.get("is_link")
                 code.save()
 
         return redirect("account:home:edit")
@@ -52,8 +53,9 @@ def add_code_view(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             text = form.cleaned_data['text']
+            is_link = form.cleaned_data["is_link"]
 
-            QRCode.objects.create(user=request.user, title=title, text=text)
+            QRCode.objects.create(user=request.user, title=title, text=text, is_link=is_link)
             
             return redirect("qrcode:add")
     else:

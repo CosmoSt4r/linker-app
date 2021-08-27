@@ -8,6 +8,7 @@ class QRCode(models.Model):
     title = models.CharField(max_length=64)
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now_add=True)
+    is_link = models.BooleanField(default=False)
     editable = models.BooleanField(default=True)
 
     def get_absolute_url(self):
