@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import SearchUserForm
 from django.contrib.auth.models import User
-from home.models import Link
+from home.models import QRCode
 
 
 def main_view(request):
@@ -26,7 +26,7 @@ def show_user(request, username):
     except User.DoesNotExist:
         raise Http404("User does not exist")
 
-    links = Link.objects.filter(user=user)
+    codes = QRCode.objects.filter(user=user)
     return render(
-        request, "user.html", context={"user": user, "links": links}
+        request, "user.html", context={"user": user, "codes": codes}
     )
