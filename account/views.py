@@ -27,7 +27,7 @@ def signup_view(request):
             User.objects.create_user(username=username, password=password)
 
             user = authenticate(username=username, password=password)
-            QRCode.objects.create(user=user, title="My link", text=f"{ request.META['HTTP_HOST'] }/{ user.username }", editable=False)
+            QRCode.objects.create(user=user, title="My link", text=f"{ request.META['HTTP_HOST'] }/{ user.username }", editable=False, is_link=True)
 
             login(request, user)
 
