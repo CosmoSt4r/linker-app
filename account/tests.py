@@ -49,7 +49,6 @@ class SignupViewTests(TestCase):
 
 
 class LoginViewTests(TestCase):
-
     def test_get(self):
         response = self.client.get("/account/login/")
         self.assertEqual(response.status_code, 200)

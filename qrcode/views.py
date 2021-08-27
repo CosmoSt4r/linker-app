@@ -39,7 +39,7 @@ def delete_code_view(request, id):
         raise Http404("QR Code not found")
 
     if request.method == "POST":
-        if request.POST.get('delete'):
+        if request.POST.get("delete"):
             QRCode.objects.filter(id=code.id).delete()
         return redirect("account:home:edit")
 
@@ -53,12 +53,14 @@ def add_code_view(request):
         form = QRCodeAddForm(request.POST)
 
         if form.is_valid():
-            title = form.cleaned_data['title']
-            text = form.cleaned_data['text']
+            title = form.cleaned_data["title"]
+            text = form.cleaned_data["text"]
             is_link = form.cleaned_data["is_link"]
 
-            QRCode.objects.create(user=request.user, title=title, text=text, is_link=is_link)
-            
+            QRCode.objects.create(
+                user=request.user, title=title, text=text, is_link=is_link
+            )
+
             return redirect("qrcode:add")
     else:
         form = QRCodeAddForm()
@@ -68,11 +70,15 @@ def add_code_view(request):
 
 def show_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
-    source = f'https://image-charts.com/chart?chs=200x200&cht=qr&chl={code.text}&choe=UTF-8'
+    source = (
+        f"https://image-charts.com/chart?chs=200x200&cht=qr&chl={code.text}&choe=UTF-8"
+    )
 
-    if request.method == 'POST':
-        response = HttpResponse(requests.get(source).content, content_type="application/png")
-        response['Content-Disposition'] = 'inline; filename=' + str(code.id) + '.png'
+    if request.method == "POST":
+        response = HttpResponse(
+            requests.get(source).content, content_type="application/png"
+        )
+        response["Content-Disposition"] = "inline; filename=" + str(code.id) + ".png"
         return response
 
-    return render(request, "show.html", {"code": code, "code_source" : source})
+    return render(request, "show.html", {"code": code, "code_source": source})

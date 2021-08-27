@@ -18,9 +18,11 @@ class MainViewTest(TestCase):
         self.assertRedirects(
             self.client.post("/code/add/", data=data), "/code/add/", 302
         )
-        self.assertTrue(QRCode.objects.filter(title='title').exists())
-        self.assertEquals(QRCode.objects.filter(title='title').get().get_absolute_url(),
-        '/code/edit/2/')
+        self.assertTrue(QRCode.objects.filter(title="title").exists())
+        self.assertEquals(
+            QRCode.objects.filter(title="title").get().get_absolute_url(),
+            "/code/edit/2/",
+        )
 
     def test_edit(self):
         self.assertRedirects(
@@ -56,3 +58,15 @@ class MainViewTest(TestCase):
             302,
         )
         self.assertNotContains(self.client.get("/account/home/"), "text")
+
+    def test_show_get(self):
+        self.assertRedirects(
+            self.client.post("/account/signup/", data=self.data), "/account/home/", 302
+        )
+        self.assertEqual(self.client.get("/code/show/1/").status_code, 200)
+
+    def test_show_post(self):
+        self.assertRedirects(
+            self.client.post("/account/signup/", data=self.data), "/account/home/", 302
+        )
+        self.assertEqual(self.client.post("/code/show/1/").status_code, 200)

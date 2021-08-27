@@ -27,6 +27,4 @@ def show_user(request, username):
         raise Http404("User does not exist")
 
     codes = QRCode.objects.filter(user=user)
-    return render(
-        request, "user.html", context={"user": user, "codes": codes}
-    )
+    return render(request, "user.html", context={"user": user, "codes": codes})
