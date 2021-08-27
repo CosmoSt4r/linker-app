@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import QRCode
 from .forms import QRCodeAddForm
+from django.http import HttpResponse
+import requests
 
 
 @login_required(login_url="account:login")
@@ -67,4 +69,10 @@ def add_code_view(request):
 def show_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
     source = f'https://image-charts.com/chart?chs=200x200&cht=qr&chl={code.text}&choe=UTF-8'
+
+    if request.method == 'POST':
+        response = HttpResponse(requests.get(source).content, content_type="application/png")
+        response['Content-Disposition'] = 'inline; filename=' + str(code.id) + '.png'
+        return response
+
     return render(request, "show.html", {"code": code, "code_source" : source})
