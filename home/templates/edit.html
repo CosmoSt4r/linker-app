@@ -4,14 +4,13 @@
 
 {% block side_buttons %}
     <button class="btn btn-primary" onclick="document.location=`{% url 'qrcode:add' %}`">Add QR Code</button>
-    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:main' %}`">Home</button>
+    <button class="btn btn-primary" onclick="document.location=`{% url 'account:home:main' %}`">Save</button>
 {% endblock %}
 
-{% block user_personal_code_buttons %}
-{% endblock %}
 
 {% block user_codes_buttons %}
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:edit' code.id %}`">Edit</button>
-    <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:delete' code.id %}`">Delete</button>
+    {% if code.editable %}
+        <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:edit' code.id %}`">Edit</button>
+        <button class="btn btn-outline-primary" onclick="document.location=`{% url 'qrcode:delete' code.id %}`">Delete</button>
+    {% endif %}
 {% endblock %}
-

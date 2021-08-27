@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from qrcode.models import QRCode
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 
@@ -26,6 +27,8 @@ def signup_view(request):
             User.objects.create_user(username=username, password=password)
 
             user = authenticate(username=username, password=password)
+            QRCode.objects.create(user=user, title="My link", text=f"{ request.META['HTTP_HOST'] }/{ user.username }", editable=False)
+
             login(request, user)
 
             return redirect("account:home:main")

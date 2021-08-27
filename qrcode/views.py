@@ -2,15 +2,14 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import QRCode
-from django.contrib.auth.models import User
 from .forms import QRCodeAddForm
 
 
 @login_required(login_url="account:login")
 def edit_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
-    if code.user != request.user:
-        raise Http404("Code not found")
+    if code.user != request.user or not code.editable:
+        raise Http404("QR Code not found")
 
     if request.method == "POST":
 
@@ -33,8 +32,8 @@ def edit_code_view(request, id):
 @login_required(login_url="account:login")
 def delete_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
-    if code.user != request.user:
-        raise Http404("QRCode not found")
+    if code.user != request.user or not code.editable:
+        raise Http404("QR Code not found")
 
     if request.method == "POST":
         if request.POST.get('delete'):
@@ -67,10 +66,3 @@ def show_code_view(request, id):
     code = get_object_or_404(QRCode, id=id)
     source = f'https://image-charts.com/chart?chs=200x200&cht=qr&chl={code.text}&choe=UTF-8'
     return render(request, "show.html", {"code": code, "code_source" : source})
-
-
-def show_user_view(request, username):
-    user = get_object_or_404(User, username=username)
-    user = {'username' : user.username, 'links_count' : QRCode.objects.filter(user=user).count()}
-    source = f'https://image-charts.com/chart?chs=200x200&cht=qr&chl={request.META["HTTP_HOST"] + "/" + username}&choe=UTF-8'
-    return render(request, "user_code.html", {"user": user, "code_source" : source})
