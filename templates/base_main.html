@@ -34,7 +34,7 @@
             <tr>
                 <td>{{ code.title }}</td>
                 {% if code.is_link %}
-                    <td><a href="//{{ code.text }}" class="link-primary">{{ code.text }}</a></td>
+                    <td><a href="{{ code.text }}" class="link-primary">{{ code.text }}</a></td>
                 {% else %}
                     <td>{{ code.text }}</td>
                 {% endif %}

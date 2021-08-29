@@ -20,7 +20,7 @@
 <div class="text-center mt-4">
     <p><strong>Content:</strong> 
         {% if code.is_link %}
-            <a href="//{{ code.text }}" class="link-primary">{{ code.text }}</a>
+            <a href="{{ code.text }}" class="link-primary">{{ code.text }}</a>
         {% else %}
             {{ code.text }}
         {% endif %}

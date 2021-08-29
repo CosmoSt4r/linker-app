@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("IS_DEBUG") != 'False'
 
 HOST = os.getenv("HOST")
-ALLOWED_HOSTS = [HOST]
+ALLOWED_HOSTS = ["127.0.0.1", HOST]
 
 # Application definition
 

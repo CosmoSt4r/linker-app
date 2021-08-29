@@ -31,7 +31,7 @@ def signup_view(request):
             QRCode.objects.create(
                 user=user,
                 title="My link",
-                text=f"{ HOST }/{ user.username }",
+                text=f"http://{ HOST }/{ user.username }",
                 editable=False,
                 is_link=True,
             )

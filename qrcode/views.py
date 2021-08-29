@@ -57,6 +57,9 @@ def add_code_view(request):
             text = form.cleaned_data["text"]
             is_link = form.cleaned_data["is_link"]
 
+            if is_link and not text.startswith('http'):
+                text = 'http://' + text
+
             QRCode.objects.create(
                 user=request.user, title=title, text=text, is_link=is_link
             )
